@@ -1,8 +1,8 @@
 from beanie import Document, PydanticObjectId
 from datetime import datetime
 
-
 class Articles(Document):
+    id: PydanticObjectId | None = None
     title: str
     body: str
     user: str

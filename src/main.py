@@ -25,7 +25,7 @@ async def startup_event():
 
 @app.get("/articles/{id}")
 async def get_article(id:PydanticObjectId):
-    articles = await Articles.find({"/articles/":id}).to_list()
+    articles = await Articles.find_one({"_id":id})
     return articles
 
 @app.get("/articles")
@@ -61,5 +61,10 @@ async def post_comments(comment:Comments):
 async def delete_articles(article:Articles):
     await Articles.delete(article)
     return article
+
+@app.delete("/comments/{id}")
+async def delete_comments(comment:Comments):
+    await Comments.delete(comment)
+    return comment
 
     
